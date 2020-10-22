@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
-using System.Net.Mime;
-using System.Text;
 using System.Threading.Tasks;
-using System.Transactions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using StarCitizenGalaxyWrapper.Helpers;
@@ -16,72 +14,7 @@ using StarCitizenGalaxyWrapper.Models.Ship.Roles;
 using StarCitizenGalaxyWrapper.Services;
 
 namespace StarCitizenGalaxyWrapper
-{    
-    /// <summary>
-    /// Client to connect to the Star Citizen Galaxy API.
-    /// </summary>
-    public interface IStarCitizenGalaxyClient
-    {
-        /// <summary>
-        /// Sends an API bulkRequest to get all chassis.
-        /// </summary>
-        Task<IEnumerable<Chassis>> GetChassis();
-        /// <summary>
-        /// Sends an API bulkRequest for the chassis with the given id.
-        /// </summary>
-        /// <param name="id">The id of the chassis.</param>
-        /// <returns>An instance of <see cref="Chassis"/> containing the information about the requested chassis.</returns>
-        Task<Chassis> GetChassis(string id);
-        /// <summary>
-        /// Sends an API bulkRequest to get all manufacturers.
-        /// </summary>
-        Task<IEnumerable<Manufacturer>> GetManufacturers();
-        /// <summary>
-        /// Sends an API bulkRequest for the manufacturer with the given id.
-        /// </summary>
-        /// <param name="id">The id of the manufacturer.</param>
-        /// <returns>An instance of <see cref="Manufacturer"/> containing the information about the bulkRequest manufacturer.</returns>
-        Task<Manufacturer> GetManufacturer(string id);
-        /// <summary>
-        /// Sends an API bulkRequest to get all ship careers.
-        /// </summary>
-        Task<IEnumerable<Career>> GetCareers();
-        /// <summary>
-        /// Sends an API bulkRequest for the ship career with the given id.
-        /// </summary>
-        /// <param name="id">The id of the ship career.</param>
-        /// <returns>An instance of <see cref="Career"/> containing the information about the bulkRequest career.</returns>
-        Task<Career> GetCareer(string id);
-        /// <summary>
-        /// Sends an API bulkRequest to get all ship roles.
-        /// </summary>
-        /// <returns></returns>
-        Task<IEnumerable<Role>> GetRoles();
-        /// <summary>
-        /// Sends an API bulkRequest for the ship role with the given id.
-        /// </summary>
-        /// <param name="id">The id of the ship role.</param>
-        /// <returns>An instance of <see cref="Role"/> containing the information about the requested ship role.</returns>
-        Task<Role> GetRole(string id);
-        /// <summary>
-        /// Sends an API bulkRequest to get all ships.
-        /// </summary>
-        /// <returns></returns>
-        Task<IEnumerable<Ship>> GetShips(ShipRequest request);
-        /// <summary>
-        /// Sends an API bulkRequest for the ship with the given id.
-        /// </summary>
-        /// <param name="id">The id of the ship.</param>
-        /// <returns>An instance of <see cref="Ship"/> containing the information about the requested ship.</returns>
-        Task<Ship> GetShip(string id);
-        /// <summary>
-        /// Sends an API bulkRequest for the specified ship configured in the given bulkRequest.
-        /// </summary>
-        /// <param name="bulkRequest">The <see cref="ShipBulkRequest"/> which has the requested information configured.</param>
-        /// <returns>A list of <see cref="Ship"/>s containing the information of the requested ships.</returns>
-        Task<IEnumerable<Ship>> GetShipsBulk(ShipBulkRequest bulkRequest);
-    }
-
+{
     /// <inheritdoc cref="IStarCitizenGalaxyClient"/>.
     internal class StarCitizenGalaxyClient : IStarCitizenGalaxyClient
     {
@@ -173,8 +106,12 @@ namespace StarCitizenGalaxyWrapper
             var requestUrl = $"{string.Format(ApiRequestUrl, "ships")}?{string.Join("&", parameters.Select(x => $"{x.Key}={x.Value}"))}";
 
             var content = await _httpService.GetHydraMember(requestUrl);
-            
-            return JsonConvert.DeserializeObject<List<Ship>>(content);
+
+            var jsonObject = JArray.Parse(content);
+            var ships = new List<Ship>();
+            ships.AddRange(jsonObject.Select(ParseShip));
+
+            return ships;
         }
 
         public async Task<Ship> GetShip(string id)
@@ -185,12 +122,49 @@ namespace StarCitizenGalaxyWrapper
             return JsonConvert.DeserializeObject<Ship>(content);
         }
 
-        public async Task<IEnumerable<Ship>> GetShipsBulk(ShipBulkRequest bulkRequest)
+        public Task<IEnumerable<Ship>> GetLoanerShips(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Ship>> GetHoldedShips(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<Ship>> GetShipsBulk(ShipBulkRequest request)
         {
             var requestUrl = string.Format(ApiRequestUrl, "ships/bulk");
-            var content = await _httpService.PostHydraMember(requestUrl, bulkRequest);
+            var content = await _httpService.PostHydraMember(requestUrl, request);
 
-            return JsonConvert.DeserializeObject<List<Ship>>(content);
+            var jsonObject = JArray.Parse(content);
+            var ships = new List<Ship>();
+            ships.AddRange(jsonObject.Select(ParseShip));
+
+            return ships;
+        }
+
+        private Ship ParseShip(JToken shipJson)
+        {
+            var ship = JsonConvert.DeserializeObject<Ship>(shipJson.ToString());
+
+            var loanerShips = new List<Ship>();
+
+            if (shipJson["loanerShips"] is JArray loanerJson)
+                loanerShips.AddRange(loanerJson.Select(loanerJsonObject => loanerJsonObject["loaned"])
+                    .Select(loaner => JsonConvert.DeserializeObject<Ship>(loaner!.ToString())));
+
+            ship.LoanerShips = loanerShips.ToArray();
+
+            var holdedShips = new List<Ship>();
+
+            if (shipJson["holdedShips"] is JArray holdedJson)
+                holdedShips.AddRange(holdedJson.Select(holdedJsonObject => holdedJsonObject["holded"])
+                    .Select(holded => JsonConvert.DeserializeObject<Ship>(holded!.ToString())));
+
+            ship.HoldedShips = holdedShips.ToArray();
+
+            return ship;
         }
     }
 }

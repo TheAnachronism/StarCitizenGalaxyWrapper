@@ -116,6 +116,94 @@
             Builds the configured <see cref="T:StarCitizenGalaxyWrapper.Helpers.ShipBulkRequest"/>.
             </summary>
         </member>
+        <member name="T:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient">
+            <summary>
+            Client to connect to the Star Citizen Galaxy API.
+            </summary>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetChassis">
+            <summary>
+            Sends an API Request to get all chassis.
+            </summary>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetChassis(System.String)">
+            <summary>
+            Sends an API Request for the chassis with the given id.
+            </summary>
+            <param name="id">The id of the chassis.</param>
+            <returns>An instance of <see cref="T:StarCitizenGalaxyWrapper.Models.Chassis.Chassis"/> containing the information about the requested chassis.</returns>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetManufacturers">
+            <summary>
+            Sends an API Request to get all manufacturers.
+            </summary>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetManufacturer(System.String)">
+            <summary>
+            Sends an API Request for the manufacturer with the given id.
+            </summary>
+            <param name="id">The id of the manufacturer.</param>
+            <returns>An instance of <see cref="T:StarCitizenGalaxyWrapper.Models.Manufacturer.Manufacturer"/> containing the information about the Request manufacturer.</returns>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetCareers">
+            <summary>
+            Sends an API Request to get all ship careers.
+            </summary>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetCareer(System.String)">
+            <summary>
+            Sends an API Request for the ship career with the given id.
+            </summary>
+            <param name="id">The id of the ship career.</param>
+            <returns>An instance of <see cref="T:StarCitizenGalaxyWrapper.Models.Ship.Career.Career"/> containing the information about the Request career.</returns>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetRoles">
+            <summary>
+            Sends an API Request to get all ship roles.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetRole(System.String)">
+            <summary>
+            Sends an API Request for the ship role with the given id.
+            </summary>
+            <param name="id">The id of the ship role.</param>
+            <returns>An instance of <see cref="T:StarCitizenGalaxyWrapper.Models.Ship.Roles.Role"/> containing the information about the requested ship role.</returns>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetShips(StarCitizenGalaxyWrapper.Helpers.ShipRequest)">
+            <summary>
+            Sends an API Request to get all ships.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetShip(System.String)">
+            <summary>
+            Sends an API Request for the ship with the given id.
+            </summary>
+            <param name="id">The id of the ship.</param>
+            <returns>An instance of <see cref="T:StarCitizenGalaxyWrapper.Models.Ship.Ship"/> containing the information about the requested ship.</returns>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetLoanerShips(System.String)">
+            <summary>
+            Sends an API request to get the loaner ships for the ship with the specified id.
+            </summary>
+            <param name="id">The id of the ship to get the loaners from.</param>
+            <returns>An list of instance of <see cref="T:StarCitizenGalaxyWrapper.Models.Ship.Ship"/> containing the information of the loaners.</returns>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetHoldedShips(System.String)">
+            <summary>
+            Sends an API request to get the holded ships from the ship with the specified id.
+            </summary>
+            <param name="id">The id of the ship to get the holded ships from.</param>
+            <returns>A list of instances of <see cref="T:StarCitizenGalaxyWrapper.Models.Ship.Ship"/> containing the information of the holded ships.</returns>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetShipsBulk(StarCitizenGalaxyWrapper.Helpers.ShipBulkRequest)">
+            <summary>
+            Sends an API Request for the specified ship configured in the given Request.
+            </summary>
+            <param name="request">The <see cref="T:StarCitizenGalaxyWrapper.Helpers.ShipRequest"/> which has the requested information configured.</param>
+            <returns>A list of <see cref="T:StarCitizenGalaxyWrapper.Models.Ship.Ship"/>s containing the information of the requested ships.</returns>
+        </member>
         <member name="T:StarCitizenGalaxyWrapper.Services.IHttpClientService">
             <summary>
             Http client service which will handle sending http requests.
@@ -147,80 +235,6 @@
             <summary>
             Custom exception for when a request does not return a successful response.
             </summary>
-        </member>
-        <member name="T:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient">
-            <summary>
-            Client to connect to the Star Citizen Galaxy API.
-            </summary>
-        </member>
-        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetChassis">
-            <summary>
-            Sends an API bulkRequest to get all chassis.
-            </summary>
-        </member>
-        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetChassis(System.String)">
-            <summary>
-            Sends an API bulkRequest for the chassis with the given id.
-            </summary>
-            <param name="id">The id of the chassis.</param>
-            <returns>An instance of <see cref="T:StarCitizenGalaxyWrapper.Models.Chassis.Chassis"/> containing the information about the requested chassis.</returns>
-        </member>
-        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetManufacturers">
-            <summary>
-            Sends an API bulkRequest to get all manufacturers.
-            </summary>
-        </member>
-        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetManufacturer(System.String)">
-            <summary>
-            Sends an API bulkRequest for the manufacturer with the given id.
-            </summary>
-            <param name="id">The id of the manufacturer.</param>
-            <returns>An instance of <see cref="T:StarCitizenGalaxyWrapper.Models.Manufacturer.Manufacturer"/> containing the information about the bulkRequest manufacturer.</returns>
-        </member>
-        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetCareers">
-            <summary>
-            Sends an API bulkRequest to get all ship careers.
-            </summary>
-        </member>
-        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetCareer(System.String)">
-            <summary>
-            Sends an API bulkRequest for the ship career with the given id.
-            </summary>
-            <param name="id">The id of the ship career.</param>
-            <returns>An instance of <see cref="T:StarCitizenGalaxyWrapper.Models.Ship.Career.Career"/> containing the information about the bulkRequest career.</returns>
-        </member>
-        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetRoles">
-            <summary>
-            Sends an API bulkRequest to get all ship roles.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetRole(System.String)">
-            <summary>
-            Sends an API bulkRequest for the ship role with the given id.
-            </summary>
-            <param name="id">The id of the ship role.</param>
-            <returns>An instance of <see cref="T:StarCitizenGalaxyWrapper.Models.Ship.Roles.Role"/> containing the information about the requested ship role.</returns>
-        </member>
-        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetShips(StarCitizenGalaxyWrapper.Helpers.ShipRequest)">
-            <summary>
-            Sends an API bulkRequest to get all ships.
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetShip(System.String)">
-            <summary>
-            Sends an API bulkRequest for the ship with the given id.
-            </summary>
-            <param name="id">The id of the ship.</param>
-            <returns>An instance of <see cref="T:StarCitizenGalaxyWrapper.Models.Ship.Ship"/> containing the information about the requested ship.</returns>
-        </member>
-        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetShipsBulk(StarCitizenGalaxyWrapper.Helpers.ShipBulkRequest)">
-            <summary>
-            Sends an API bulkRequest for the specified ship configured in the given bulkRequest.
-            </summary>
-            <param name="bulkRequest">The <see cref="T:StarCitizenGalaxyWrapper.Helpers.ShipBulkRequest"/> which has the requested information configured.</param>
-            <returns>A list of <see cref="T:StarCitizenGalaxyWrapper.Models.Ship.Ship"/>s containing the information of the requested ships.</returns>
         </member>
         <member name="T:StarCitizenGalaxyWrapper.StarCitizenGalaxyClient">
             <inheritdoc cref="T:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient"/>.

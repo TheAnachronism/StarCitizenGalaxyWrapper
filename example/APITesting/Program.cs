@@ -23,7 +23,7 @@ namespace APITesting
                 .BuildServiceProvider();
 
             var client = services.GetService<IStarCitizenGalaxyClient>();
-            
+            var result = (await client.GetLoanerShips(""));
         }
     }
 }
