@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StarCitizenGalaxyWrapper</name>
+    </assembly>
+    <members>
+        <member name="T:StarCitizenGalaxyWrapper.Helpers.ServiceCollectionExtension">
+            <summary>
+            Extension for the <see cref="!:IServiceCollection"/> to use the <see cref="!:StarCitizenGalaxyClient"/>.
+            </summary>
+        </member>
+    </members>
+</doc>
