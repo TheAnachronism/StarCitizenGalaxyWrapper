@@ -1,6 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Mime;
+using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using StarCitizenGalaxyWrapper.Helpers;
 using StarCitizenGalaxyWrapper.Models.Chassis;
 using StarCitizenGalaxyWrapper.Models.Manufacturer;
@@ -17,128 +23,174 @@ namespace StarCitizenGalaxyWrapper
     public interface IStarCitizenGalaxyClient
     {
         /// <summary>
-        /// Sends an API request to get all chassis.
+        /// Sends an API bulkRequest to get all chassis.
         /// </summary>
         Task<IEnumerable<Chassis>> GetChassis();
         /// <summary>
-        /// Sends an API request for the chassis with the given id.
+        /// Sends an API bulkRequest for the chassis with the given id.
         /// </summary>
         /// <param name="id">The id of the chassis.</param>
         /// <returns>An instance of <see cref="Chassis"/> containing the information about the requested chassis.</returns>
         Task<Chassis> GetChassis(string id);
         /// <summary>
-        /// Sends an API request to get all manufacturers.
+        /// Sends an API bulkRequest to get all manufacturers.
         /// </summary>
         Task<IEnumerable<Manufacturer>> GetManufacturers();
         /// <summary>
-        /// Sends an API request for the manufacturer with the given id.
+        /// Sends an API bulkRequest for the manufacturer with the given id.
         /// </summary>
         /// <param name="id">The id of the manufacturer.</param>
-        /// <returns>An instance of <see cref="Manufacturer"/> containing the information about the request manufacturer.</returns>
+        /// <returns>An instance of <see cref="Manufacturer"/> containing the information about the bulkRequest manufacturer.</returns>
         Task<Manufacturer> GetManufacturer(string id);
         /// <summary>
-        /// Sends an API request to get all ship careers.
+        /// Sends an API bulkRequest to get all ship careers.
         /// </summary>
         Task<IEnumerable<Career>> GetCareers();
         /// <summary>
-        /// Sends an API request for the ship career with the given id.
+        /// Sends an API bulkRequest for the ship career with the given id.
         /// </summary>
         /// <param name="id">The id of the ship career.</param>
-        /// <returns>An instance of <see cref="Career"/> containing the information about the request career.</returns>
+        /// <returns>An instance of <see cref="Career"/> containing the information about the bulkRequest career.</returns>
         Task<Career> GetCareer(string id);
         /// <summary>
-        /// Sends an API request to get all ship roles.
+        /// Sends an API bulkRequest to get all ship roles.
         /// </summary>
         /// <returns></returns>
         Task<IEnumerable<Role>> GetRoles();
         /// <summary>
-        /// Sends an API request for the ship role with the given id.
+        /// Sends an API bulkRequest for the ship role with the given id.
         /// </summary>
         /// <param name="id">The id of the ship role.</param>
         /// <returns>An instance of <see cref="Role"/> containing the information about the requested ship role.</returns>
         Task<Role> GetRole(string id);
         /// <summary>
-        /// Sends an API request to get all ships.
+        /// Sends an API bulkRequest to get all ships.
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<Ship>> GetShips();
+        Task<IEnumerable<Ship>> GetShips(ShipRequest request);
         /// <summary>
-        /// Sends an API request for the ship with the given id.
+        /// Sends an API bulkRequest for the ship with the given id.
         /// </summary>
         /// <param name="id">The id of the ship.</param>
         /// <returns>An instance of <see cref="Ship"/> containing the information about the requested ship.</returns>
         Task<Ship> GetShip(string id);
         /// <summary>
-        /// Sends an API request for the specified ship configured in the given request.
+        /// Sends an API bulkRequest for the specified ship configured in the given bulkRequest.
         /// </summary>
-        /// <param name="request">The <see cref="ShipRequest"/> which has the requested information configured.</param>
+        /// <param name="bulkRequest">The <see cref="ShipBulkRequest"/> which has the requested information configured.</param>
         /// <returns>A list of <see cref="Ship"/>s containing the information of the requested ships.</returns>
-        Task<IEnumerable<Ship>> GetShipsBulk(ShipRequest request);
+        Task<IEnumerable<Ship>> GetShipsBulk(ShipBulkRequest bulkRequest);
     }
 
     /// <inheritdoc cref="IStarCitizenGalaxyClient"/>.
     internal class StarCitizenGalaxyClient : IStarCitizenGalaxyClient
     {
         private readonly IHttpClientService _httpService;
+        private const string ApiRequestUrl = "https://sc-galaxy.com/api/{0}";
 
         public StarCitizenGalaxyClient(IHttpClientService httpService)
         {
             _httpService = httpService;
         }
 
-        public Task<IEnumerable<Chassis>> GetChassis()
+        public async Task<IEnumerable<Chassis>> GetChassis()
         {
-            throw new System.NotImplementedException();
+            var requestUrl = string.Format(ApiRequestUrl, "chassis");
+            var content = await _httpService.GetHydraMember(requestUrl);
+            
+            return JsonConvert.DeserializeObject<List<Chassis>>(content);
         }
 
-        public Task<Chassis> GetChassis(string id)
+        public async Task<Chassis> GetChassis(string id)
         {
-            throw new System.NotImplementedException();
+            var requestUrl = string.Format(ApiRequestUrl, $"chassis/{id}");
+            var content = await _httpService.Get(requestUrl);
+
+            return JsonConvert.DeserializeObject<Chassis>(content);
         }
 
-        public Task<IEnumerable<Manufacturer>> GetManufacturers()
+        public async Task<IEnumerable<Manufacturer>> GetManufacturers()
         {
-            throw new System.NotImplementedException();
+            var requestUrl = string.Format(ApiRequestUrl, "manufacturers");
+            var content = await _httpService.GetHydraMember(requestUrl);
+            
+            return JsonConvert.DeserializeObject<List<Manufacturer>>(content);
         }
 
-        public Task<Manufacturer> GetManufacturer(string id)
+        public async Task<Manufacturer> GetManufacturer(string id)
         {
-            throw new System.NotImplementedException();
+            var requestUrl = string.Format(ApiRequestUrl, $"manufacturers/{id}");
+            var content = await _httpService.Get(requestUrl);
+
+            return JsonConvert.DeserializeObject<Manufacturer>(content);
         }
 
-        public Task<IEnumerable<Career>> GetCareers()
+        public async Task<IEnumerable<Career>> GetCareers()
         {
-            throw new System.NotImplementedException();
+            var requestUrl = string.Format(ApiRequestUrl, "ship-careers");
+            var content = await _httpService.GetHydraMember(requestUrl);
+            
+            return JsonConvert.DeserializeObject<List<Career>>(content);
         }
 
-        public Task<Career> GetCareer(string id)
+        public async Task<Career> GetCareer(string id)
         {
-            throw new System.NotImplementedException();
+            var requestUrl = string.Format(ApiRequestUrl, $"ship-careers/{id}");
+            var content = await _httpService.Get(requestUrl);
+
+            return JsonConvert.DeserializeObject<Career>(content);
         }
 
-        public Task<IEnumerable<Role>> GetRoles()
+        public async Task<IEnumerable<Role>> GetRoles()
         {
-            throw new System.NotImplementedException();
+            var requestUrl = string.Format(ApiRequestUrl, "ship-roles");
+            var content = await _httpService.GetHydraMember(requestUrl);
+
+            return JsonConvert.DeserializeObject<List<Role>>(content);
         }
 
-        public Task<Role> GetRole(string id)
+        public async Task<Role> GetRole(string id)
         {
-            throw new System.NotImplementedException();
+            var requestUrl = string.Format(ApiRequestUrl, $"ship-roles/{id}");
+            var content = await _httpService.Get(requestUrl);
+
+            return JsonConvert.DeserializeObject<Role>(content);
         }
 
-        public Task<IEnumerable<Ship>> GetShips()
+        public async Task<IEnumerable<Ship>> GetShips(ShipRequest request)
         {
-            throw new System.NotImplementedException();
+            var parameters = new List<KeyValuePair<string, string>>();
+
+            if (request.Chassis.Any())
+                parameters.AddRange(request.Chassis.Select(x => new KeyValuePair<string, string>("chassis[]", x)));
+            if (!string.IsNullOrEmpty(request.Name))
+                parameters.Add(new KeyValuePair<string, string>("name", request.Name));
+            if (request.Page != 0)
+                parameters.Add(new KeyValuePair<string, string>("page", request.Page.ToString()));
+            if (request.Pagination)
+                parameters.Add(new KeyValuePair<string, string>("pagination", "true"));
+
+            var requestUrl = $"{string.Format(ApiRequestUrl, "ships")}?{string.Join("&", parameters.Select(x => $"{x.Key}={x.Value}"))}";
+
+            var content = await _httpService.GetHydraMember(requestUrl);
+            
+            return JsonConvert.DeserializeObject<List<Ship>>(content);
         }
 
-        public Task<Ship> GetShip(string id)
+        public async Task<Ship> GetShip(string id)
         {
-            throw new System.NotImplementedException();
+            var requestUrl = string.Format(ApiRequestUrl, $"ships/{id}");
+            var content = await _httpService.Get(requestUrl);
+
+            return JsonConvert.DeserializeObject<Ship>(content);
         }
 
-        public Task<IEnumerable<Ship>> GetShipsBulk(ShipRequest request)
+        public async Task<IEnumerable<Ship>> GetShipsBulk(ShipBulkRequest bulkRequest)
         {
-            throw new System.NotImplementedException();
+            var requestUrl = string.Format(ApiRequestUrl, "ships/bulk");
+            var content = await _httpService.PostHydraMember(requestUrl, bulkRequest);
+
+            return JsonConvert.DeserializeObject<List<Ship>>(content);
         }
     }
 }

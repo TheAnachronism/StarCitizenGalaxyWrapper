@@ -1,29 +1,40 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace StarCitizenGalaxyWrapper.Helpers
 {
     /// <summary>
-    /// A request to configure which ships should be requested from the ships/bulk endpoint.
-    /// Keep in mind, that both fields can be set so only a name or an id of the requested ship must be entered.
+    /// A configuration for the ships endpoint.
     /// </summary>
     public class ShipRequest
     {
         /// <summary>
-        /// Creates a new instance of <see cref="ShipRequest"/> with the given ids and names.
+        /// Initializes a new instance of <see cref="ShipRequest"/>/
         /// </summary>
-        internal ShipRequest(List<string> ids, List<string> names)
+        public ShipRequest(string[] chassis, string name, int page, bool pagination)
         {
-            Ids = ids;
-            Names = names;
+            Chassis = chassis;
+            Name = name;
+            Page = page;
+            Pagination = pagination;
         }
 
         /// <summary>
-        /// The ids of the ships requested.
+        /// The different chassis the requested ships should have.
         /// </summary>
-        public List<string> Ids { get; }
+        public string[] Chassis { get; }
         /// <summary>
-        /// The names of the ships request.
+        /// The name of the requested ships.
         /// </summary>
-        public List<string> Names { get; }
+        public string Name { get; }
+        /// <summary>
+        /// The page on which the requested ships are.
+        /// </summary>
+        public int Page { get; }
+        /// <summary>
+        /// If pagination should be enabled.
+        /// </summary>
+        public bool Pagination { get; }
     }
 }

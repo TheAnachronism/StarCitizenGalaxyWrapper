@@ -5,34 +5,34 @@ using System.Text;
 namespace StarCitizenGalaxyWrapper.Helpers
 {
     /// <summary>
-    /// A helper class to better configure a <see cref="ShipRequest"/>
+    /// A helper class to better configure a <see cref="ShipBulkRequest"/>
     /// </summary>
-    public class ShipRequestBuilder
+    public class ShipBulkRequestBuilder
     {
         private readonly List<string> _names = new List<string>();
         private readonly List<string> _ids = new List<string>();
         /// <summary>
-        /// Adds the given names to the <see cref="ShipRequest"/>.
+        /// Adds the given names to the <see cref="ShipBulkRequest"/>.
         /// </summary>
-        public ShipRequestBuilder AddNames(IEnumerable<string> names)
+        public ShipBulkRequestBuilder AddNames(IEnumerable<string> names)
         {
             _names.AddRange(names);
             return this;
         }
         /// <summary>
-        /// Adds the given ids to the <see cref="ShipRequest"/>.
+        /// Adds the given ids to the <see cref="ShipBulkRequest"/>.
         /// </summary>
-        public ShipRequestBuilder AddIds(IEnumerable<string> ids)
+        public ShipBulkRequestBuilder AddIds(IEnumerable<string> ids)
         {
             _ids.AddRange(ids);
             return this;
         }
         /// <summary>
-        /// Builds the configured <see cref="ShipRequest"/>.
+        /// Builds the configured <see cref="ShipBulkRequest"/>.
         /// </summary>
-        public ShipRequest Build()
+        public ShipBulkRequest Build()
         {
-            return new ShipRequest(_ids, _names);
+            return new ShipBulkRequest(_ids, _names);
         }
     }
 }

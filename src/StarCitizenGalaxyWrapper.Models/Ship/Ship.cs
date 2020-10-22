@@ -1,10 +1,11 @@
 ﻿using System;
+using Newtonsoft.Json;
 using StarCitizenGalaxyWrapper.Models.Ship.Roles;
 
 namespace StarCitizenGalaxyWrapper.Models.Ship
 {
     /// <summary>
-    /// A representation of a single API response for the ship endpoint.
+    /// A representation of a single API response for the ship endpoint?.
     /// </summary>
     public class Ship
     {
@@ -27,27 +28,27 @@ namespace StarCitizenGalaxyWrapper.Models.Ship
         /// <summary>
         /// The loaners of this ship,
         /// </summary>
-        public string[] LoanerShips { get; set; }
+        public Ship[] LoanerShips { get; set; }
         /// <summary>
         /// The height of this ship.
         /// </summary>
-        public int Height { get; set; }
+        public float? Height { get; set; }
         /// <summary>
         /// The length of this ship.
         /// </summary>
-        public int Length { get; set; }
+        public float? Length { get; set; }
         /// <summary>
         /// The beam of this ship.
         /// </summary>
-        public int Beam { get; set; }
+        public float? Beam { get; set; }
         /// <summary>
         /// The maximal crew amount of this ship.
         /// </summary>
-        public int MaxCrew { get; set; }
+        public int? MaxCrew { get; set; }
         /// <summary>
         /// The minimal crew amount of this ship.
         /// </summary>
-        public int MinCrew { get; set; }
+        public int? MinCrew { get; set; }
         /// <summary>
         /// The production status of this ship.
         /// </summary>
@@ -59,7 +60,7 @@ namespace StarCitizenGalaxyWrapper.Models.Ship
         /// <summary>
         /// The cargo capacity of this ship.
         /// </summary>
-        public int CargoCapacity { get; set; }
+        public int? CargoCapacity { get; set; }
         /// <summary>
         /// The career of this ship.
         /// </summary>
@@ -75,7 +76,7 @@ namespace StarCitizenGalaxyWrapper.Models.Ship
         /// <summary>
         /// The cost of this ship.
         /// </summary>
-        public decimal PledgeCost { get; set; }
+        public int? PledgeCost { get; set; }
         /// <summary>
         /// The datetime this ship was created.
         /// </summary>

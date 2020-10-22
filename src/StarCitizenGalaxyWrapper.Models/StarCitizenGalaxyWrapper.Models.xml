@@ -96,7 +96,7 @@
         </member>
         <member name="T:StarCitizenGalaxyWrapper.Models.Ship.Ship">
             <summary>
-            A representation of a single API response for the ship endpoint.
+            A representation of a single API response for the ship endpoint?.
             </summary>
         </member>
         <member name="P:StarCitizenGalaxyWrapper.Models.Ship.Ship.Id">

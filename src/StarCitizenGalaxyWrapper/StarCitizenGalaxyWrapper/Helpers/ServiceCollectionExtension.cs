@@ -15,8 +15,7 @@ namespace StarCitizenGalaxyWrapper.Helpers
         /// <summary>
         /// Adds the <see cref="StarCitizenGalaxyClient"/> to the service collection.
         /// </summary>
-        public static IServiceCollection AddStarCitizenGalaxyApiLibrary(this IServiceCollection services,
-            IConfiguration config)
+        public static IServiceCollection AddStarCitizenGalaxyApiLibrary(this IServiceCollection services)
         {
             services.AddTransient<IHttpClientService, HttpClientService>();
             services.AddTransient<IStarCitizenGalaxyClient, StarCitizenGalaxyClient>();

@@ -1,4 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using StarCitizenGalaxyWrapper;
+using StarCitizenGalaxyWrapper.Helpers;
 
 namespace APITesting
 {
@@ -6,7 +13,17 @@ namespace APITesting
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            MainAsync().Wait();
+        }
+
+        static async Task MainAsync()
+        {
+            var services = new ServiceCollection()
+                .AddStarCitizenGalaxyApiLibrary()
+                .BuildServiceProvider();
+
+            var client = services.GetService<IStarCitizenGalaxyClient>();
+            
         }
     }
 }

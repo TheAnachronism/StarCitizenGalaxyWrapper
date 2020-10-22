@@ -9,9 +9,111 @@
             Extension for the <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to use the <see cref="T:StarCitizenGalaxyWrapper.StarCitizenGalaxyClient"/>.
             </summary>
         </member>
-        <member name="M:StarCitizenGalaxyWrapper.Helpers.ServiceCollectionExtension.AddStarCitizenGalaxyApiLibrary(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:StarCitizenGalaxyWrapper.Helpers.ServiceCollectionExtension.AddStarCitizenGalaxyApiLibrary(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
             <summary>
             Adds the <see cref="T:StarCitizenGalaxyWrapper.StarCitizenGalaxyClient"/> to the service collection.
+            </summary>
+        </member>
+        <member name="T:StarCitizenGalaxyWrapper.Helpers.ShipBulkRequest">
+            <summary>
+            A request to configure which ships should be requested from the ships/bulk endpoint.
+            Keep in mind, that both fields can be set so only a name or an id of the requested ship must be entered.
+            </summary>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.Helpers.ShipBulkRequest.#ctor(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+            <summary>
+            Creates a new instance of <see cref="T:StarCitizenGalaxyWrapper.Helpers.ShipBulkRequest"/> with the given ids and names.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Helpers.ShipBulkRequest.Ids">
+            <summary>
+            The ids of the ships requested.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Helpers.ShipBulkRequest.Names">
+            <summary>
+            The names of the ships request.
+            </summary>
+        </member>
+        <member name="T:StarCitizenGalaxyWrapper.Helpers.ShipRequest">
+            <summary>
+            A configuration for the ships endpoint.
+            </summary>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.Helpers.ShipRequest.#ctor(System.String[],System.String,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a new instance of <see cref="T:StarCitizenGalaxyWrapper.Helpers.ShipRequest"/>/
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Helpers.ShipRequest.Chassis">
+            <summary>
+            The different chassis the requested ships should have.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Helpers.ShipRequest.Name">
+            <summary>
+            The name of the requested ships.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Helpers.ShipRequest.Page">
+            <summary>
+            The page on which the requested ships are.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Helpers.ShipRequest.Pagination">
+            <summary>
+            If pagination should be enabled.
+            </summary>
+        </member>
+        <member name="T:StarCitizenGalaxyWrapper.Helpers.ShipRequestBuilder">
+            <summary>
+            A helper class to build a configuration for the ships endpoint.
+            </summary>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.Helpers.ShipRequestBuilder.AddChassis(System.String)">
+            <summary>
+            Adds the given chassis to the configuration.
+            </summary>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.Helpers.ShipRequestBuilder.WithName(System.String)">
+            <summary>
+            Sets which name the requested ship has.
+            </summary>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.Helpers.ShipRequestBuilder.WithPage(System.Int32)">
+            <summary>
+            Sets on which page the requested ship is.
+            </summary>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.Helpers.ShipRequestBuilder.EnablePagination">
+            <summary>
+            Sets that pagination should be enabled.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.Helpers.ShipRequestBuilder.Build">
+            <summary>
+            Builds the configuration for the API request.
+            </summary>
+        </member>
+        <member name="T:StarCitizenGalaxyWrapper.Helpers.ShipBulkRequestBuilder">
+            <summary>
+            A helper class to better configure a <see cref="T:StarCitizenGalaxyWrapper.Helpers.ShipBulkRequest"/>
+            </summary>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.Helpers.ShipBulkRequestBuilder.AddNames(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Adds the given names to the <see cref="T:StarCitizenGalaxyWrapper.Helpers.ShipBulkRequest"/>.
+            </summary>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.Helpers.ShipBulkRequestBuilder.AddIds(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Adds the given ids to the <see cref="T:StarCitizenGalaxyWrapper.Helpers.ShipBulkRequest"/>.
+            </summary>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.Helpers.ShipBulkRequestBuilder.Build">
+            <summary>
+            Builds the configured <see cref="T:StarCitizenGalaxyWrapper.Helpers.ShipBulkRequest"/>.
             </summary>
         </member>
         <member name="T:StarCitizenGalaxyWrapper.Services.IHttpClientService">
@@ -25,6 +127,16 @@
             </summary>
             <param name="url">URL to send the request to.</param>
             <exception cref="T:StarCitizenGalaxyWrapper.Services.HttpFailedRequestException">This exception will be thrown if you do not get a successful status code.</exception>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.Services.IHttpClientService.GetHydraMember(System.String)">
+            <summary>
+            Sends a HttpGet request to the specified url and selects the "hydra-member" array.
+            </summary>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.Services.IHttpClientService.PostHydraMember(System.String,System.Object)">
+            <summary>
+            Sends a HttpPost request to the specified url with the given object as json body.
+            </summary>
         </member>
         <member name="T:StarCitizenGalaxyWrapper.Services.HttpClientService">
             <summary>
@@ -40,6 +152,75 @@
             <summary>
             Client to connect to the Star Citizen Galaxy API.
             </summary>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetChassis">
+            <summary>
+            Sends an API bulkRequest to get all chassis.
+            </summary>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetChassis(System.String)">
+            <summary>
+            Sends an API bulkRequest for the chassis with the given id.
+            </summary>
+            <param name="id">The id of the chassis.</param>
+            <returns>An instance of <see cref="T:StarCitizenGalaxyWrapper.Models.Chassis.Chassis"/> containing the information about the requested chassis.</returns>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetManufacturers">
+            <summary>
+            Sends an API bulkRequest to get all manufacturers.
+            </summary>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetManufacturer(System.String)">
+            <summary>
+            Sends an API bulkRequest for the manufacturer with the given id.
+            </summary>
+            <param name="id">The id of the manufacturer.</param>
+            <returns>An instance of <see cref="T:StarCitizenGalaxyWrapper.Models.Manufacturer.Manufacturer"/> containing the information about the bulkRequest manufacturer.</returns>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetCareers">
+            <summary>
+            Sends an API bulkRequest to get all ship careers.
+            </summary>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetCareer(System.String)">
+            <summary>
+            Sends an API bulkRequest for the ship career with the given id.
+            </summary>
+            <param name="id">The id of the ship career.</param>
+            <returns>An instance of <see cref="T:StarCitizenGalaxyWrapper.Models.Ship.Career.Career"/> containing the information about the bulkRequest career.</returns>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetRoles">
+            <summary>
+            Sends an API bulkRequest to get all ship roles.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetRole(System.String)">
+            <summary>
+            Sends an API bulkRequest for the ship role with the given id.
+            </summary>
+            <param name="id">The id of the ship role.</param>
+            <returns>An instance of <see cref="T:StarCitizenGalaxyWrapper.Models.Ship.Roles.Role"/> containing the information about the requested ship role.</returns>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetShips(StarCitizenGalaxyWrapper.Helpers.ShipRequest)">
+            <summary>
+            Sends an API bulkRequest to get all ships.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetShip(System.String)">
+            <summary>
+            Sends an API bulkRequest for the ship with the given id.
+            </summary>
+            <param name="id">The id of the ship.</param>
+            <returns>An instance of <see cref="T:StarCitizenGalaxyWrapper.Models.Ship.Ship"/> containing the information about the requested ship.</returns>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient.GetShipsBulk(StarCitizenGalaxyWrapper.Helpers.ShipBulkRequest)">
+            <summary>
+            Sends an API bulkRequest for the specified ship configured in the given bulkRequest.
+            </summary>
+            <param name="bulkRequest">The <see cref="T:StarCitizenGalaxyWrapper.Helpers.ShipBulkRequest"/> which has the requested information configured.</param>
+            <returns>A list of <see cref="T:StarCitizenGalaxyWrapper.Models.Ship.Ship"/>s containing the information of the requested ships.</returns>
         </member>
         <member name="T:StarCitizenGalaxyWrapper.StarCitizenGalaxyClient">
             <inheritdoc cref="T:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient"/>.
