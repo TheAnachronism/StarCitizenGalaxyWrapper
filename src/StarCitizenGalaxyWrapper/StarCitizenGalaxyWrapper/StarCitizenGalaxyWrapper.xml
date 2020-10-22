@@ -6,8 +6,43 @@
     <members>
         <member name="T:StarCitizenGalaxyWrapper.Helpers.ServiceCollectionExtension">
             <summary>
-            Extension for the <see cref="!:IServiceCollection"/> to use the <see cref="!:StarCitizenGalaxyClient"/>.
+            Extension for the <see cref="T:Microsoft.Extensions.DependencyInjection.IServiceCollection"/> to use the <see cref="T:StarCitizenGalaxyWrapper.StarCitizenGalaxyClient"/>.
             </summary>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.Helpers.ServiceCollectionExtension.AddStarCitizenGalaxyApiLibrary(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Adds the <see cref="T:StarCitizenGalaxyWrapper.StarCitizenGalaxyClient"/> to the service collection.
+            </summary>
+        </member>
+        <member name="T:StarCitizenGalaxyWrapper.Services.IHttpClientService">
+            <summary>
+            Http client service which will handle sending http requests.
+            </summary>
+        </member>
+        <member name="M:StarCitizenGalaxyWrapper.Services.IHttpClientService.Get(System.String)">
+            <summary>
+            Sends a HttpGet request to the specified url.
+            </summary>
+            <param name="url">URL to send the request to.</param>
+            <exception cref="T:StarCitizenGalaxyWrapper.Services.HttpFailedRequestException">This exception will be thrown if you do not get a successful status code.</exception>
+        </member>
+        <member name="T:StarCitizenGalaxyWrapper.Services.HttpClientService">
+            <summary>
+            Default implementation of <see cref="T:StarCitizenGalaxyWrapper.Services.IHttpClientService"/>.
+            </summary>
+        </member>
+        <member name="T:StarCitizenGalaxyWrapper.Services.HttpFailedRequestException">
+            <summary>
+            Custom exception for when a request does not return a successful response.
+            </summary>
+        </member>
+        <member name="T:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient">
+            <summary>
+            Client to connect to the Star Citizen Galaxy API.
+            </summary>
+        </member>
+        <member name="T:StarCitizenGalaxyWrapper.StarCitizenGalaxyClient">
+            <inheritdoc cref="T:StarCitizenGalaxyWrapper.IStarCitizenGalaxyClient"/>.
         </member>
     </members>
 </doc>
