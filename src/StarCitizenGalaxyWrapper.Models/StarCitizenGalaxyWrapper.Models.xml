@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>StarCitizenGalaxyWrapper.Models</name>
+    </assembly>
+    <members>
+        <member name="T:StarCitizenGalaxyWrapper.Models.Chassis.Chassis">
+            <summary>
+            A representation of a single API response for the chassis endpoint.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Chassis.Chassis.Id">
+            <summary>
+            The id of this chassis.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Chassis.Chassis.Name">
+            <summary>
+            The name of this chassis.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Chassis.Chassis.Manufacturer">
+            <summary>
+            The <see cref="P:StarCitizenGalaxyWrapper.Models.Chassis.Chassis.Manufacturer"/> of this chassis.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Chassis.Chassis.CreatedAt">
+            <summary>
+            The datetime this chassis was created.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Chassis.Chassis.UpdatedAt">
+            <summary>
+            The datetime this chassis was last updated.
+            </summary>
+        </member>
+        <member name="T:StarCitizenGalaxyWrapper.Models.Manufacturer.Manufacturer">
+            <summary>
+            A representation of a single API response for the manufacturer endpoint.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Manufacturer.Manufacturer.Id">
+            <summary>
+            The id of this manufacturer.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Manufacturer.Manufacturer.Name">
+            <summary>
+            The name of this manufacturer.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Manufacturer.Manufacturer.Code">
+            <summary>
+            The code of this manufacturer.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Manufacturer.Manufacturer.CreatedAt">
+            <summary>
+            The datetime when this manufacturer was created.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Manufacturer.Manufacturer.UpdatedAt">
+            <summary>
+            The datetime when this manufacturer was last updated.
+            </summary>
+        </member>
+        <member name="T:StarCitizenGalaxyWrapper.Models.Ship.Career.Career">
+            <summary>
+            A representation of a single API response from the career endpoint.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Ship.Career.Career.Id">
+            <summary>
+            The id of this ship career.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Ship.Career.Career.Label">
+            <summary>
+            The label of this ship career.
+            </summary>
+        </member>
+        <member name="T:StarCitizenGalaxyWrapper.Models.Ship.Roles.Role">
+            <summary>
+            A representation of a single response from the ship role endpoint.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Ship.Roles.Role.Id">
+            <summary>
+            The id of this role.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Ship.Roles.Role.Label">
+            <summary>
+            The label of this role.
+            </summary>
+        </member>
+        <member name="T:StarCitizenGalaxyWrapper.Models.Ship.Ship">
+            <summary>
+            A representation of a single API response for the ship endpoint.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Ship.Ship.Id">
+            <summary>
+            The id of this ship.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Ship.Ship.Name">
+            <summary>
+            The name of this ship.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Ship.Ship.Chassis">
+            <summary>
+            The chassis of this ship.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Ship.Ship.HoldedShips">
+            <summary>
+            The ships this ship holds.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Ship.Ship.LoanerShips">
+            <summary>
+            The loaners of this ship,
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Ship.Ship.Height">
+            <summary>
+            The height of this ship.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Ship.Ship.Length">
+            <summary>
+            The length of this ship.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Ship.Ship.Beam">
+            <summary>
+            The beam of this ship.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Ship.Ship.MaxCrew">
+            <summary>
+            The maximal crew amount of this ship.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Ship.Ship.MinCrew">
+            <summary>
+            The minimal crew amount of this ship.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Ship.Ship.ReadyStatus">
+            <summary>
+            The production status of this ship.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Ship.Ship.Size">
+            <summary>
+            The size of this ship.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Ship.Ship.CargoCapacity">
+            <summary>
+            The cargo capacity of this ship.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Ship.Ship.Career">
+            <summary>
+            The career of this ship.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Ship.Ship.Roles">
+            <summary>
+            The roles this ship has.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Ship.Ship.PledgeUrl">
+            <summary>
+            The url of the pledge page of this ship.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Ship.Ship.PledgeCost">
+            <summary>
+            The cost of this ship.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Ship.Ship.CreatedAt">
+            <summary>
+            The datetime this ship was created.
+            </summary>
+        </member>
+        <member name="P:StarCitizenGalaxyWrapper.Models.Ship.Ship.UpdatedAt">
+            <summary>
+            The datetime this ship was last updated.
+            </summary>
+        </member>
+    </members>
+</doc>
