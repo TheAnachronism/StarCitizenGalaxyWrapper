@@ -5,15 +5,17 @@ VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarCitizenGalaxyWrapper", "src\StarCitizenGalaxyWrapper\StarCitizenGalaxyWrapper\StarCitizenGalaxyWrapper.csproj", "{9355B5E4-403A-4F19-9C60-05510D538E9C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APITesting", "example\APITesting\APITesting.csproj", "{8FC1A4A8-0857-45FC-9926-49A0993FEE5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APITesting", "example\APITesting\APITesting.csproj", "{8FC1A4A8-0857-45FC-9926-49A0993FEE5F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{67BF3D45-7671-4F61-9204-95BCA8760C88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarCitizenGalaxyWrapper.Models", "src\StarCitizenGalaxyWrapper.Models\StarCitizenGalaxyWrapper.Models.csproj", "{7A0DF655-674A-43AF-91C0-42DF89EAB9EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarCitizenGalaxyWrapper.Models", "src\StarCitizenGalaxyWrapper.Models\StarCitizenGalaxyWrapper.Models.csproj", "{7A0DF655-674A-43AF-91C0-42DF89EAB9EC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{3FF8C6B1-BD3B-40C9-9A3C-A818F557B834}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarCitizenGalaxyWrapper.Tests", "test\unit\StarCitizenGalaxyWrapper.Tests\StarCitizenGalaxyWrapper.Tests.csproj", "{F80AC341-5BC2-4FD0-BA18-DFDC0323ECA5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StarCitizenGalaxyWrapper.Tests", "test\unit\StarCitizenGalaxyWrapper.Tests\StarCitizenGalaxyWrapper.Tests.csproj", "{F80AC341-5BC2-4FD0-BA18-DFDC0323ECA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore_example", "example\AspNetCore_example\AspNetCore_example.csproj", "{EEC55F14-CF4A-422E-9E07-CBCB5FD49F71}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +39,10 @@ Global
 		{F80AC341-5BC2-4FD0-BA18-DFDC0323ECA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F80AC341-5BC2-4FD0-BA18-DFDC0323ECA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F80AC341-5BC2-4FD0-BA18-DFDC0323ECA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEC55F14-CF4A-422E-9E07-CBCB5FD49F71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEC55F14-CF4A-422E-9E07-CBCB5FD49F71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEC55F14-CF4A-422E-9E07-CBCB5FD49F71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEC55F14-CF4A-422E-9E07-CBCB5FD49F71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +50,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{8FC1A4A8-0857-45FC-9926-49A0993FEE5F} = {67BF3D45-7671-4F61-9204-95BCA8760C88}
 		{F80AC341-5BC2-4FD0-BA18-DFDC0323ECA5} = {3FF8C6B1-BD3B-40C9-9A3C-A818F557B834}
+		{EEC55F14-CF4A-422E-9E07-CBCB5FD49F71} = {67BF3D45-7671-4F61-9204-95BCA8760C88}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {50144048-A96A-4479-9CB7-6FE3DC0E605D}

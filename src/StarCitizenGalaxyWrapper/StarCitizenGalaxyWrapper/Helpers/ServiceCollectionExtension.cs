@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using StarCitizenGalaxyWrapper.Services;
 
 namespace StarCitizenGalaxyWrapper.Helpers
@@ -17,7 +13,6 @@ namespace StarCitizenGalaxyWrapper.Helpers
         /// </summary>
         public static IServiceCollection AddStarCitizenGalaxyApiLibrary(this IServiceCollection services)
         {
-            services.AddTransient<IHttpClientService, HttpClientService>();
             services.AddTransient<IStarCitizenGalaxyClient, StarCitizenGalaxyClient>();
             services.AddHttpClient<IHttpClientService, HttpClientService>();
 
